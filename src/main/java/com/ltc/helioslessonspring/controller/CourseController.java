@@ -73,6 +73,8 @@ public class CourseController {
         CourseResponseDTO courseResponseDTO = courseService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(courseResponseDTO);
 
+
+
     }
 
 
