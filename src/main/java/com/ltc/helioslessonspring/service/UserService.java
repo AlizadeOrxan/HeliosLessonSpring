@@ -42,6 +42,7 @@ public class UserService {
     }
 
     public AppUserEntity update(Long id , AppUserEntity userEntity){
+
         AppUserEntity oldUserEntity = appUserRepository.findById(id).orElseThrow(()->
                 new RuntimeException("Bele bir id-e sahib biri yoxdur"));
 

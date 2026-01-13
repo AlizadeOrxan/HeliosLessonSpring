@@ -9,6 +9,8 @@ import com.ltc.helioslessonspring.repository.StudentRepository;
 import com.ltc.helioslessonspring.service.CourseService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +39,7 @@ public class CourseServiceImpl implements CourseService {
 
         courseResponseDTO.setId(dbSaving.getId());
         courseResponseDTO.setCourseName(dbSaving.getCourseName());
+        courseResponseDTO.setCourseCode(dbSaving.getCourseCode());
         courseResponseDTO.setStudentName(dbSaving.getStudentName());
         courseResponseDTO.setStudentSurname(dbSaving.getStudentSurname());
 
@@ -55,6 +58,7 @@ public class CourseServiceImpl implements CourseService {
 
         courseResponseDTO.setId(courseEntity.getId());
         courseResponseDTO.setCourseName(courseEntity.getCourseName());
+        courseResponseDTO.setCourseCode(courseEntity.getCourseCode());
         courseResponseDTO.setStudentName(courseEntity.getStudentName());
         courseResponseDTO.setStudentSurname(courseEntity.getStudentSurname());
 
@@ -63,16 +67,15 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<CourseResponseDTO> getAll() {
-
-        return courseRepository.findAll().stream()
-                .map(course ->
-                        new CourseResponseDTO(
-                                course.getId(),
-                                course.getCourseName(),
-                                course.getStudentName(),
-                                course.getStudentSurname())).toList();
-
+    public Page<CourseResponseDTO> getAll(Pageable pageable) {
+        return courseRepository.findAll(pageable)
+                .map(course -> new CourseResponseDTO(
+                        course.getId(),
+                        course.getCourseName(),
+                        course.getCourseCode(),
+                        course.getStudentName(),
+                        course.getStudentSurname()
+                ));
     }
 
     @Override
@@ -82,6 +85,7 @@ public class CourseServiceImpl implements CourseService {
         );
 
         existDatabase.setCourseName(courseRequestDTO.getCourseName());
+        existDatabase.setCourseCode(courseRequestDTO.getCourseCode());
         existDatabase.setStudentName(courseRequestDTO.getStudentName());
         existDatabase.setStudentSurname(courseRequestDTO.getStudentSurname());
 
@@ -91,6 +95,7 @@ public class CourseServiceImpl implements CourseService {
 
         courseResponseDTO.setId(dbSaving.getId());
         courseResponseDTO.setCourseName(dbSaving.getCourseName());
+        courseResponseDTO.setCourseCode(dbSaving.getCourseCode());
         courseResponseDTO.setStudentName(dbSaving.getStudentName());
         courseResponseDTO.setStudentSurname(dbSaving.getStudentSurname());
 

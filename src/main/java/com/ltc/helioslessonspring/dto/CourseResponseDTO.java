@@ -14,6 +14,8 @@ public class CourseResponseDTO {
 
     private String courseName;
 
+    private String courseCode;
+
     private String studentName;
 
     private String studentSurname;

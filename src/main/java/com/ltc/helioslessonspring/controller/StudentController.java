@@ -53,6 +53,17 @@ public class StudentController {
 
     }
 
+    @GetMapping("/students/by-course/{courseId}")
+    public ResponseEntity<List<StudentResponseDTO>> getStudentsByCourseId(@PathVariable Long courseId) {
+        List<StudentResponseDTO> students = studentService.getStudentsByCourseId(courseId);
+        return ResponseEntity.ok(students);
+    }
+//
+//
+//    @GetMapping("/courseName")
+//    public List<StudentResponseDTO> getStudentsByCourseName(@RequestParam("name") String courseName) {
+//        return studentService.getStudentsByCourseName(courseName);
+//    }
 
 
 }

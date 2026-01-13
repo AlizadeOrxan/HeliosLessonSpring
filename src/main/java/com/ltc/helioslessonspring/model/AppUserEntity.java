@@ -1,6 +1,7 @@
 package com.ltc.helioslessonspring.model;
 
 
+import com.ltc.helioslessonspring.validation.ValidName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,9 @@ public class AppUserEntity {
     private Long id;
 
 
+    @ValidName
     private String username;
+
 
     private String surname;
 

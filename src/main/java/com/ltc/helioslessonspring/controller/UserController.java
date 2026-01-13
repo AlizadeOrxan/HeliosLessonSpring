@@ -2,6 +2,8 @@ package com.ltc.helioslessonspring.controller;
 
 import com.ltc.helioslessonspring.model.AppUserEntity;
 import com.ltc.helioslessonspring.service.UserService;
+import com.ltc.helioslessonspring.validation.ValidName;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +23,7 @@ public class UserController {
     /// localhost:8080/user/create -> url bu qaydada yazilsin ve Postmanda POST sechilsin
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public AppUserEntity createUser(@RequestBody AppUserEntity userEntity){
+    public AppUserEntity createUser(@Valid @RequestBody AppUserEntity userEntity){
         return userService.createUser(userEntity);
     }
 
